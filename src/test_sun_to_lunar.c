@@ -36,6 +36,9 @@ int main(int argc,const char* argv[])
 	printf("%s\n",dayNameInMonth(pLD->day));
 
 	printf("今年的第%d天,%s月有%d天,今天周%s\n",daysOfSunYear(sunDate),monthNameInYear(sunDate.month),daysOfSunMonth(sunDate),dayNameInWeek(sunDate));
+
+	printf("今天出生的人的星座是：%s\n", starNameInSun(&sunDate) );
+
 	printf("今年的春节是%d月%d号\n",lunarSpringInSunMonth(sunDate.year),lunarSpringInSunDay(sunDate.year));
 	printf("这个月的第一个节气是：%s,日期是：%d-%d\n",dayNameInSolarTerms(sunDate.month,0),sunDate.month,solarTermDayInMonth(sunDate.year,sunDate.month,0));
 	printf("这个月的第二个节气是：%s,日期是：%d-%d\n",dayNameInSolarTerms(sunDate.month,1),sunDate.month,solarTermDayInMonth(sunDate.year,sunDate.month,1));

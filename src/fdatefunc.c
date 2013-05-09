@@ -112,3 +112,22 @@ int lunarToSun(LunarDate* pLD,SunDate* pSD,BL* pBL,U8 leapMonth)
 	}
 	return 0;
 }
+
+int starIdxInSun(SunDate* pDate)
+{
+	if (pDate) {
+		int leap = isLeapYear(pDate->year);
+		int offsetDay = daysOfSunYear(*pDate) % (starEndOffsetDays[leap][11] + 1);
+		int idx = 6;
+		if (offsetDay >= starEndOffsetDays[leap][idx]) {
+			while(offsetDay > starEndOffsetDays[leap][idx])
+				++idx;
+		} else {
+			idx = 0;
+			while(offsetDay > starEndOffsetDays[leap][idx])
+				++idx;
+		}
+		return idx;
+	}
+	return -1;
+}

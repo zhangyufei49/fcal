@@ -47,6 +47,19 @@ int sunToLunar(LunarDate* pLD,SunDate* pSD,BL* pBL,U8 leapMonth);
 int lunarToSun(LunarDate* pLD,SunDate* pSD,BL* pBL,U8 leapMonth);
 /*上面的操作都将跟新offset，和isSetted的值
  */
+
+/**
+ * 获取星座 
+ * 看上去夏末秋初人比较多，所以用7月份的星座做计算的分割
+ * 返回-1表示失败
+ */
+int starIdxInSun(SunDate* pDate);
+#define starNameInSun(date) (\
+{\
+	int idx = starIdxInSun(date);\
+	(idx != (-1)) ? starName[idx] : "X X 座";\
+})
+
 #ifdef __cplusplus
 #if __cplusplus
 }
