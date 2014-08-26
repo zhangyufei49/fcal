@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include "fdatefunc.h"
+#include "test_help.h"
 
 int main(int argc,char* argv[])
 {
+	if (argc < 4) {
+		show_help(argv[0]);
+	}
 	LunarDate LD={
 		.year=(U16)atoi(argv[1]),
-		.month=(U8)atoi(argv[2]),
+		.month=(U8)atoi(argv[2]) - 1,
 		.day=(U8)atoi(argv[3])
 	};
 	SunDate sunDate;

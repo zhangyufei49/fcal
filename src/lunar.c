@@ -1,39 +1,11 @@
-#include <stdio.h>
 #include <string.h>
-#include <time.h>
-#include "fdatefunc.h"
+#include "test_help.h"
 
-void show_help(const char* name) 
-{
-	printf("\nUsage:\n\t");
-	printf("%s year month day\n\t", name);
-	printf("defalut show now date.\n");
-	exit(0);
-}
 
 int main(int argc,const char* argv[])
 {
 
-	SunDate sunDate;
-	if (argc < 2) {
-		time_t now_time;
-		time(&now_time);
-		struct tm* now = localtime(&now_time);
-		if (now) {
-			sunDate.year=(U16)(now->tm_year + 1900);
-			sunDate.month=(U8)(now->tm_mon + 1);
-			sunDate.day=(U8)now->tm_mday;
-		}
-	} else if (4 == argc) {
-		sunDate.year=(U16)atoi(argv[1]);
-		sunDate.month=(U8)atoi(argv[2]);
-		sunDate.day=(U8)atoi(argv[3]);
-	} else if (!strcmp("--help", argv[1])) {
-		show_help(argv[0]);
-	} else {
-		show_help(argv[0]);
-	}
-
+	SunDate sunDate = check_arg_get_date(argc, argv);
 	int tmp;
 	LunarDate* pLD=(LunarDate*)malloc(sizeof(LunarDate));
 	BL* bl;

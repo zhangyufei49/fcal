@@ -1,13 +1,8 @@
-#include <stdio.h>
-#include "fdatefunc.h"
+#include "test_help.h"
 
 int main(int argc,const char* argv[])
 {
-	SunDate sunDate={
-		.year=(U16)atoi(argv[1]),
-		.month=(U8)atoi(argv[2]),
-		.day=(U8)atoi(argv[3])
-	};
+	SunDate sunDate= check_arg_get_date(argc, argv);
 	int tmp;
 	LunarDate* pLD=(LunarDate*)malloc(sizeof(LunarDate));
 	BL* bl;
